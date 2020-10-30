@@ -1,0 +1,117 @@
+body {
+    background: #000;
+}
+
+.login-box {
+    width: 45%;
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+.login-box input[type="submit"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    background: rgb(248, 245, 245);
+    color: rgb(3, 3, 3);
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.login-box input[type="button"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    background: rgb(240, 5, 5);
+    color: rgb(250, 245, 245);
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.login-box label {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    display: inline-block;
+    width: 80px;
+    margin-right: 100px;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"],
+.login-box select {
+    background: white;
+    outline: none;
+    height: 30px;
+    width: 200px;
+    font-size: 16px;
+    border-radius: 94px 94px 94px 94px;
+    -moz-border-radius: 94px 94px 94px 94px;
+    -webkit-border-radius: 94px 94px 94px 94px;
+    border: 0px solid #000000;
+    margin: 5px;
+    background-color: white;
+    background-image: url("..//_img//LOGO.png");
+    background-size: 20px 20px;
+    color: rgb(12, 9, 9);
+    border: transparent;
+    background-repeat: no-repeat;
+}
+
+.contenedor-logo {
+    background: black;
+    height: 40%;
+    min-width: 100%;
+}
+
+.contenedor-logo-derecha {
+    background: black;
+    width: 40%;
+    margin-left: 60%;
+    text-align: center;
+}
+
+.contenedor-botones {
+    background: black;
+    height: 10%;
+    min-width: 100%;
+    margin: 15px;
+}
+
+.contenedor-formulario {
+    background: black;
+    height: 50%;
+    min-width: 100%;
+    color: white;
+    padding-left: 10%;
+}
+
+.boton-margin {
+    margin-left: 30px;
+    width: 150px;
+}
+
+.boton-crear-usurio {
+    width: 300px;
+    height: 40px;
+    background-color: black;
+    background-image: url("..//img//BOTONGRIS.png");
+    background-size: 300px 40px;
+    color: white;
+    border: transparent;
+    background-position: center;
+}
+
+
+
+.boton-guardar {
+    width: 200px;
+    height: 30px;
+    background-color: black;
+    background-image: url("..//img//BOTONROJO.png");
+    background-size: 200px 30px;
+    color: white;
+    border: transparent;
+    margin: auto;
+}

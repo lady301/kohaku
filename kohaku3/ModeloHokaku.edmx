@@ -1,0 +1,864 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="kohakuModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="asistencia">
+          <Key>
+            <PropertyRef Name="id_asistencia" />
+          </Key>
+          <Property Name="id_asistencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clases_id_clases" Type="int" Nullable="false" />
+          <Property Name="usuario_id_usuario" Type="uint" Nullable="false" />
+          <Property Name="validacion_asistencia" Type="tinyint" Nullable="false" />
+          <Property Name="novedad" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bitacora">
+          <Key>
+            <PropertyRef Name="id_bitacora" />
+          </Key>
+          <Property Name="id_bitacora" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="observacion" Type="varchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bitacora_has_usuario">
+          <Key>
+            <PropertyRef Name="bitacora_id_bitacora" />
+            <PropertyRef Name="usuario_id_usuario" />
+          </Key>
+          <Property Name="bitacora_id_bitacora" Type="uint" Nullable="false" />
+          <Property Name="usuario_id_usuario" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="clases">
+          <Key>
+            <PropertyRef Name="id_clases" />
+          </Key>
+          <Property Name="id_clases" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="hora" Type="time" Precision="0" Nullable="false" />
+          <Property Name="codigo_clase" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="documentacion">
+          <Key>
+            <PropertyRef Name="id_documentacion" />
+          </Key>
+          <Property Name="id_documentacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_documento" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ubicacion_documento" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="estado_documentacion_id_estado_documentacion" Type="uint" Nullable="false" />
+          <Property Name="usuario_id_usuario" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="estado_documentacion">
+          <Key>
+            <PropertyRef Name="id_estado_documentacion" />
+          </Key>
+          <Property Name="id_estado_documentacion" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="estado_pago">
+          <Key>
+            <PropertyRef Name="id_estado_pagos" />
+          </Key>
+          <Property Name="id_estado_pagos" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="estado_usuario">
+          <Key>
+            <PropertyRef Name="idestado_usuario" />
+          </Key>
+          <Property Name="idestado_usuario" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pagos">
+          <Key>
+            <PropertyRef Name="id_pagos" />
+          </Key>
+          <Property Name="id_pagos" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="valor" Type="bigint" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="numero_clases_pagadas" Type="int" Nullable="false" />
+          <Property Name="estado_pago_id_estado_pagos" Type="uint" Nullable="false" />
+          <Property Name="usuario_id_usuario" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="rango_usuario">
+          <Key>
+            <PropertyRef Name="idrango_usuario" />
+          </Key>
+          <Property Name="idrango_usuario" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipo_documento">
+          <Key>
+            <PropertyRef Name="idtipo_documento" />
+          </Key>
+          <Property Name="idtipo_documento" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipo_usuario">
+          <Key>
+            <PropertyRef Name="id_tipo_usuario" />
+          </Key>
+          <Property Name="id_tipo_usuario" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="numero_identificacion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="telefono_fijo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="telefono_movil" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="correo_electronico" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="clases_restantes" Type="int" Nullable="false" />
+          <Property Name="clave" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="tipo_usuario_id_tipo_usuario" Type="uint" Nullable="false" />
+          <Property Name="tipo_documento_idtipo_documento" Type="uint" Nullable="false" />
+          <Property Name="rango_usuario_idrango_usuario" Type="uint" Nullable="false" />
+          <Property Name="estado_usuario_idestado_usuario" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario_has_clases">
+          <Key>
+            <PropertyRef Name="usuario_id_usuario" />
+            <PropertyRef Name="clases_id_clases" />
+          </Key>
+          <Property Name="usuario_id_usuario" Type="uint" Nullable="false" />
+          <Property Name="clases_id_clases" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_asistencia_clases1">
+          <End Role="clases" Type="Self.clases" Multiplicity="1" />
+          <End Role="asistencia" Type="Self.asistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clases">
+              <PropertyRef Name="id_clases" />
+            </Principal>
+            <Dependent Role="asistencia">
+              <PropertyRef Name="clases_id_clases" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_asistencia_usuario1">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="asistencia" Type="Self.asistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="asistencia">
+              <PropertyRef Name="usuario_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_bitacora_has_usuario_bitacora1">
+          <End Role="bitacora" Type="Self.bitacora" Multiplicity="1" />
+          <End Role="bitacora_has_usuario" Type="Self.bitacora_has_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bitacora">
+              <PropertyRef Name="id_bitacora" />
+            </Principal>
+            <Dependent Role="bitacora_has_usuario">
+              <PropertyRef Name="bitacora_id_bitacora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_bitacora_has_usuario_usuario1">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="bitacora_has_usuario" Type="Self.bitacora_has_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="bitacora_has_usuario">
+              <PropertyRef Name="usuario_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_documentacion_estado_documentacion1">
+          <End Role="estado_documentacion" Type="Self.estado_documentacion" Multiplicity="1" />
+          <End Role="documentacion" Type="Self.documentacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado_documentacion">
+              <PropertyRef Name="id_estado_documentacion" />
+            </Principal>
+            <Dependent Role="documentacion">
+              <PropertyRef Name="estado_documentacion_id_estado_documentacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_documentacion_usuario1">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="documentacion" Type="Self.documentacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="documentacion">
+              <PropertyRef Name="usuario_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pagos_estado_pago1">
+          <End Role="estado_pago" Type="Self.estado_pago" Multiplicity="1" />
+          <End Role="pagos" Type="Self.pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado_pago">
+              <PropertyRef Name="id_estado_pagos" />
+            </Principal>
+            <Dependent Role="pagos">
+              <PropertyRef Name="estado_pago_id_estado_pagos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pagos_usuario1">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="pagos" Type="Self.pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="pagos">
+              <PropertyRef Name="usuario_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuario_estado_usuario1">
+          <End Role="estado_usuario" Type="Self.estado_usuario" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado_usuario">
+              <PropertyRef Name="idestado_usuario" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="estado_usuario_idestado_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuario_has_clases_clases1">
+          <End Role="clases" Type="Self.clases" Multiplicity="1" />
+          <End Role="usuario_has_clases" Type="Self.usuario_has_clases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clases">
+              <PropertyRef Name="id_clases" />
+            </Principal>
+            <Dependent Role="usuario_has_clases">
+              <PropertyRef Name="clases_id_clases" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuario_has_clases_usuario1">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="usuario_has_clases" Type="Self.usuario_has_clases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="usuario_has_clases">
+              <PropertyRef Name="usuario_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuario_rango_usuario1">
+          <End Role="rango_usuario" Type="Self.rango_usuario" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rango_usuario">
+              <PropertyRef Name="idrango_usuario" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="rango_usuario_idrango_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuario_tipo_documento1">
+          <End Role="tipo_documento" Type="Self.tipo_documento" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_documento">
+              <PropertyRef Name="idtipo_documento" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="tipo_documento_idtipo_documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuario_tipo_usuario1">
+          <End Role="tipo_usuario" Type="Self.tipo_usuario" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_usuario">
+              <PropertyRef Name="id_tipo_usuario" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="tipo_usuario_id_tipo_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="kohakuModelStoreContainer">
+          <EntitySet Name="asistencia" EntityType="Self.asistencia" Schema="kohaku" store:Type="Tables" />
+          <EntitySet Name="bitacora" EntityType="Self.bitacora" Schema="kohaku" store:Type="Tables" />
+          <EntitySet Name="bitacora_has_usuario" EntityType="Self.bitacora_has_usuario" Schema="kohaku" store:Type="Tables" />
+          <EntitySet Name="clases" EntityType="Self.clases" Schema="kohaku" store:Type="Tables" />
+          <EntitySet Name="documentacion" EntityType="Self.documentacion" Schema="kohaku" store:Type="Tables" />
+          <EntitySet Name="estado_documentacion" EntityType="Self.estado_documentacion" Schema="kohaku" store:Type="Tables" />
+          <EntitySet Name="estado_pago" EntityType="Self.estado_pago" Schema="kohaku" store:Type="Tables" />
+          <EntitySet Name="estado_usuario" EntityType="Self.estado_usuario" Schema="kohaku" store:Type="Tables" />
+          <EntitySet Name="pagos" EntityType="Self.pagos" Schema="kohaku" store:Type="Tables" />
+          <EntitySet Name="rango_usuario" EntityType="Self.rango_usuario" Schema="kohaku" store:Type="Tables" />
+          <EntitySet Name="tipo_documento" EntityType="Self.tipo_documento" Schema="kohaku" store:Type="Tables" />
+          <EntitySet Name="tipo_usuario" EntityType="Self.tipo_usuario" Schema="kohaku" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="kohaku" store:Type="Tables" />
+          <EntitySet Name="usuario_has_clases" EntityType="Self.usuario_has_clases" Schema="kohaku" store:Type="Tables" />
+          <AssociationSet Name="fk_asistencia_clases1" Association="Self.fk_asistencia_clases1">
+            <End Role="clases" EntitySet="clases" />
+            <End Role="asistencia" EntitySet="asistencia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_asistencia_usuario1" Association="Self.fk_asistencia_usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="asistencia" EntitySet="asistencia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_bitacora_has_usuario_bitacora1" Association="Self.fk_bitacora_has_usuario_bitacora1">
+            <End Role="bitacora" EntitySet="bitacora" />
+            <End Role="bitacora_has_usuario" EntitySet="bitacora_has_usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_bitacora_has_usuario_usuario1" Association="Self.fk_bitacora_has_usuario_usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="bitacora_has_usuario" EntitySet="bitacora_has_usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_documentacion_estado_documentacion1" Association="Self.fk_documentacion_estado_documentacion1">
+            <End Role="estado_documentacion" EntitySet="estado_documentacion" />
+            <End Role="documentacion" EntitySet="documentacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_documentacion_usuario1" Association="Self.fk_documentacion_usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="documentacion" EntitySet="documentacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pagos_estado_pago1" Association="Self.fk_pagos_estado_pago1">
+            <End Role="estado_pago" EntitySet="estado_pago" />
+            <End Role="pagos" EntitySet="pagos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pagos_usuario1" Association="Self.fk_pagos_usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="pagos" EntitySet="pagos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuario_estado_usuario1" Association="Self.fk_usuario_estado_usuario1">
+            <End Role="estado_usuario" EntitySet="estado_usuario" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuario_has_clases_clases1" Association="Self.fk_usuario_has_clases_clases1">
+            <End Role="clases" EntitySet="clases" />
+            <End Role="usuario_has_clases" EntitySet="usuario_has_clases" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuario_has_clases_usuario1" Association="Self.fk_usuario_has_clases_usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="usuario_has_clases" EntitySet="usuario_has_clases" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuario_rango_usuario1" Association="Self.fk_usuario_rango_usuario1">
+            <End Role="rango_usuario" EntitySet="rango_usuario" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuario_tipo_documento1" Association="Self.fk_usuario_tipo_documento1">
+            <End Role="tipo_documento" EntitySet="tipo_documento" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuario_tipo_usuario1" Association="Self.fk_usuario_tipo_usuario1">
+            <End Role="tipo_usuario" EntitySet="tipo_usuario" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="kohakuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="asistencia">
+          <Key>
+            <PropertyRef Name="id_asistencia" />
+          </Key>
+          <Property Name="id_asistencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clases_id_clases" Type="Int32" Nullable="false" />
+          <Property Name="usuario_id_usuario" Type="Int64" Nullable="false" />
+          <Property Name="validacion_asistencia" Type="SByte" Nullable="false" />
+          <Property Name="novedad" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="clases" Relationship="Self.fk_asistencia_clases1" FromRole="asistencia" ToRole="clases" />
+          <NavigationProperty Name="usuario" Relationship="Self.fk_asistencia_usuario1" FromRole="asistencia" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="bitacora">
+          <Key>
+            <PropertyRef Name="id_bitacora" />
+          </Key>
+          <Property Name="id_bitacora" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="observacion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.bitacora_has_usuario" FromRole="bitacora" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="clases">
+          <Key>
+            <PropertyRef Name="id_clases" />
+          </Key>
+          <Property Name="id_clases" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" />
+          <Property Name="hora" Type="Time" Nullable="false" />
+          <Property Name="codigo_clase" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="asistencia" Relationship="Self.fk_asistencia_clases1" FromRole="clases" ToRole="asistencia" />
+          <NavigationProperty Name="usuario" Relationship="Self.usuario_has_clases" FromRole="clases" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="documentacion">
+          <Key>
+            <PropertyRef Name="id_documentacion" />
+          </Key>
+          <Property Name="id_documentacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_documento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ubicacion_documento" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado_documentacion_id_estado_documentacion" Type="Int64" Nullable="false" />
+          <Property Name="usuario_id_usuario" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="estado_documentacion" Relationship="Self.fk_documentacion_estado_documentacion1" FromRole="documentacion" ToRole="estado_documentacion" />
+          <NavigationProperty Name="usuario" Relationship="Self.fk_documentacion_usuario1" FromRole="documentacion" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="estado_documentacion">
+          <Key>
+            <PropertyRef Name="id_estado_documentacion" />
+          </Key>
+          <Property Name="id_estado_documentacion" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="documentacion" Relationship="Self.fk_documentacion_estado_documentacion1" FromRole="estado_documentacion" ToRole="documentacion" />
+        </EntityType>
+        <EntityType Name="estado_pago">
+          <Key>
+            <PropertyRef Name="id_estado_pagos" />
+          </Key>
+          <Property Name="id_estado_pagos" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="pagos" Relationship="Self.fk_pagos_estado_pago1" FromRole="estado_pago" ToRole="pagos" />
+        </EntityType>
+        <EntityType Name="estado_usuario">
+          <Key>
+            <PropertyRef Name="idestado_usuario" />
+          </Key>
+          <Property Name="idestado_usuario" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.fk_usuario_estado_usuario1" FromRole="estado_usuario" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="pagos">
+          <Key>
+            <PropertyRef Name="id_pagos" />
+          </Key>
+          <Property Name="id_pagos" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="valor" Type="Int64" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numero_clases_pagadas" Type="Int32" Nullable="false" />
+          <Property Name="estado_pago_id_estado_pagos" Type="Int64" Nullable="false" />
+          <Property Name="usuario_id_usuario" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="estado_pago" Relationship="Self.fk_pagos_estado_pago1" FromRole="pagos" ToRole="estado_pago" />
+          <NavigationProperty Name="usuario" Relationship="Self.fk_pagos_usuario1" FromRole="pagos" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="rango_usuario">
+          <Key>
+            <PropertyRef Name="idrango_usuario" />
+          </Key>
+          <Property Name="idrango_usuario" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.fk_usuario_rango_usuario1" FromRole="rango_usuario" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="tipo_documento">
+          <Key>
+            <PropertyRef Name="idtipo_documento" />
+          </Key>
+          <Property Name="idtipo_documento" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.fk_usuario_tipo_documento1" FromRole="tipo_documento" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="tipo_usuario">
+          <Key>
+            <PropertyRef Name="id_tipo_usuario" />
+          </Key>
+          <Property Name="id_tipo_usuario" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.fk_usuario_tipo_usuario1" FromRole="tipo_usuario" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numero_identificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono_fijo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono_movil" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo_electronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="clases_restantes" Type="Int32" Nullable="false" />
+          <Property Name="clave" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo_usuario_id_tipo_usuario" Type="Int64" Nullable="false" />
+          <Property Name="tipo_documento_idtipo_documento" Type="Int64" Nullable="false" />
+          <Property Name="rango_usuario_idrango_usuario" Type="Int64" Nullable="false" />
+          <Property Name="estado_usuario_idestado_usuario" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="asistencia" Relationship="Self.fk_asistencia_usuario1" FromRole="usuario" ToRole="asistencia" />
+          <NavigationProperty Name="documentacion" Relationship="Self.fk_documentacion_usuario1" FromRole="usuario" ToRole="documentacion" />
+          <NavigationProperty Name="estado_usuario" Relationship="Self.fk_usuario_estado_usuario1" FromRole="usuario" ToRole="estado_usuario" />
+          <NavigationProperty Name="pagos" Relationship="Self.fk_pagos_usuario1" FromRole="usuario" ToRole="pagos" />
+          <NavigationProperty Name="rango_usuario" Relationship="Self.fk_usuario_rango_usuario1" FromRole="usuario" ToRole="rango_usuario" />
+          <NavigationProperty Name="tipo_documento" Relationship="Self.fk_usuario_tipo_documento1" FromRole="usuario" ToRole="tipo_documento" />
+          <NavigationProperty Name="tipo_usuario" Relationship="Self.fk_usuario_tipo_usuario1" FromRole="usuario" ToRole="tipo_usuario" />
+          <NavigationProperty Name="bitacora" Relationship="Self.bitacora_has_usuario" FromRole="usuario" ToRole="bitacora" />
+          <NavigationProperty Name="clases" Relationship="Self.usuario_has_clases" FromRole="usuario" ToRole="clases" />
+        </EntityType>
+        <Association Name="fk_asistencia_clases1">
+          <End Role="clases" Type="Self.clases" Multiplicity="1" />
+          <End Role="asistencia" Type="Self.asistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clases">
+              <PropertyRef Name="id_clases" />
+            </Principal>
+            <Dependent Role="asistencia">
+              <PropertyRef Name="clases_id_clases" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_asistencia_usuario1">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="asistencia" Type="Self.asistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="asistencia">
+              <PropertyRef Name="usuario_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_documentacion_estado_documentacion1">
+          <End Role="estado_documentacion" Type="Self.estado_documentacion" Multiplicity="1" />
+          <End Role="documentacion" Type="Self.documentacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado_documentacion">
+              <PropertyRef Name="id_estado_documentacion" />
+            </Principal>
+            <Dependent Role="documentacion">
+              <PropertyRef Name="estado_documentacion_id_estado_documentacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_documentacion_usuario1">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="documentacion" Type="Self.documentacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="documentacion">
+              <PropertyRef Name="usuario_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pagos_estado_pago1">
+          <End Role="estado_pago" Type="Self.estado_pago" Multiplicity="1" />
+          <End Role="pagos" Type="Self.pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado_pago">
+              <PropertyRef Name="id_estado_pagos" />
+            </Principal>
+            <Dependent Role="pagos">
+              <PropertyRef Name="estado_pago_id_estado_pagos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuario_estado_usuario1">
+          <End Role="estado_usuario" Type="Self.estado_usuario" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado_usuario">
+              <PropertyRef Name="idestado_usuario" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="estado_usuario_idestado_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pagos_usuario1">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="pagos" Type="Self.pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="pagos">
+              <PropertyRef Name="usuario_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuario_rango_usuario1">
+          <End Role="rango_usuario" Type="Self.rango_usuario" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rango_usuario">
+              <PropertyRef Name="idrango_usuario" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="rango_usuario_idrango_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuario_tipo_documento1">
+          <End Role="tipo_documento" Type="Self.tipo_documento" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_documento">
+              <PropertyRef Name="idtipo_documento" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="tipo_documento_idtipo_documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuario_tipo_usuario1">
+          <End Role="tipo_usuario" Type="Self.tipo_usuario" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_usuario">
+              <PropertyRef Name="id_tipo_usuario" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="tipo_usuario_id_tipo_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="bitacora_has_usuario">
+          <End Role="bitacora" Type="Self.bitacora" Multiplicity="*" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+        </Association>
+        <Association Name="usuario_has_clases">
+          <End Role="clases" Type="Self.clases" Multiplicity="*" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="kohakuEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="asistencia" EntityType="Self.asistencia" />
+          <EntitySet Name="bitacora" EntityType="Self.bitacora" />
+          <EntitySet Name="clases" EntityType="Self.clases" />
+          <EntitySet Name="documentacion" EntityType="Self.documentacion" />
+          <EntitySet Name="estado_documentacion" EntityType="Self.estado_documentacion" />
+          <EntitySet Name="estado_pago" EntityType="Self.estado_pago" />
+          <EntitySet Name="estado_usuario" EntityType="Self.estado_usuario" />
+          <EntitySet Name="pagos" EntityType="Self.pagos" />
+          <EntitySet Name="rango_usuario" EntityType="Self.rango_usuario" />
+          <EntitySet Name="tipo_documento" EntityType="Self.tipo_documento" />
+          <EntitySet Name="tipo_usuario" EntityType="Self.tipo_usuario" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <AssociationSet Name="fk_asistencia_clases1" Association="Self.fk_asistencia_clases1">
+            <End Role="clases" EntitySet="clases" />
+            <End Role="asistencia" EntitySet="asistencia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_asistencia_usuario1" Association="Self.fk_asistencia_usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="asistencia" EntitySet="asistencia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_documentacion_estado_documentacion1" Association="Self.fk_documentacion_estado_documentacion1">
+            <End Role="estado_documentacion" EntitySet="estado_documentacion" />
+            <End Role="documentacion" EntitySet="documentacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_documentacion_usuario1" Association="Self.fk_documentacion_usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="documentacion" EntitySet="documentacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pagos_estado_pago1" Association="Self.fk_pagos_estado_pago1">
+            <End Role="estado_pago" EntitySet="estado_pago" />
+            <End Role="pagos" EntitySet="pagos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuario_estado_usuario1" Association="Self.fk_usuario_estado_usuario1">
+            <End Role="estado_usuario" EntitySet="estado_usuario" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pagos_usuario1" Association="Self.fk_pagos_usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="pagos" EntitySet="pagos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuario_rango_usuario1" Association="Self.fk_usuario_rango_usuario1">
+            <End Role="rango_usuario" EntitySet="rango_usuario" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuario_tipo_documento1" Association="Self.fk_usuario_tipo_documento1">
+            <End Role="tipo_documento" EntitySet="tipo_documento" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuario_tipo_usuario1" Association="Self.fk_usuario_tipo_usuario1">
+            <End Role="tipo_usuario" EntitySet="tipo_usuario" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="bitacora_has_usuario" Association="Self.bitacora_has_usuario">
+            <End Role="bitacora" EntitySet="bitacora" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="usuario_has_clases" Association="Self.usuario_has_clases">
+            <End Role="clases" EntitySet="clases" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="kohakuModelStoreContainer" CdmEntityContainer="kohakuEntities3">
+          <EntitySetMapping Name="asistencia">
+            <EntityTypeMapping TypeName="kohakuModel.asistencia">
+              <MappingFragment StoreEntitySet="asistencia">
+                <ScalarProperty Name="id_asistencia" ColumnName="id_asistencia" />
+                <ScalarProperty Name="clases_id_clases" ColumnName="clases_id_clases" />
+                <ScalarProperty Name="usuario_id_usuario" ColumnName="usuario_id_usuario" />
+                <ScalarProperty Name="validacion_asistencia" ColumnName="validacion_asistencia" />
+                <ScalarProperty Name="novedad" ColumnName="novedad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bitacora">
+            <EntityTypeMapping TypeName="kohakuModel.bitacora">
+              <MappingFragment StoreEntitySet="bitacora">
+                <ScalarProperty Name="id_bitacora" ColumnName="id_bitacora" />
+                <ScalarProperty Name="observacion" ColumnName="observacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clases">
+            <EntityTypeMapping TypeName="kohakuModel.clases">
+              <MappingFragment StoreEntitySet="clases">
+                <ScalarProperty Name="id_clases" ColumnName="id_clases" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="codigo_clase" ColumnName="codigo_clase" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="documentacion">
+            <EntityTypeMapping TypeName="kohakuModel.documentacion">
+              <MappingFragment StoreEntitySet="documentacion">
+                <ScalarProperty Name="id_documentacion" ColumnName="id_documentacion" />
+                <ScalarProperty Name="nombre_documento" ColumnName="nombre_documento" />
+                <ScalarProperty Name="ubicacion_documento" ColumnName="ubicacion_documento" />
+                <ScalarProperty Name="estado_documentacion_id_estado_documentacion" ColumnName="estado_documentacion_id_estado_documentacion" />
+                <ScalarProperty Name="usuario_id_usuario" ColumnName="usuario_id_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estado_documentacion">
+            <EntityTypeMapping TypeName="kohakuModel.estado_documentacion">
+              <MappingFragment StoreEntitySet="estado_documentacion">
+                <ScalarProperty Name="id_estado_documentacion" ColumnName="id_estado_documentacion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estado_pago">
+            <EntityTypeMapping TypeName="kohakuModel.estado_pago">
+              <MappingFragment StoreEntitySet="estado_pago">
+                <ScalarProperty Name="id_estado_pagos" ColumnName="id_estado_pagos" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estado_usuario">
+            <EntityTypeMapping TypeName="kohakuModel.estado_usuario">
+              <MappingFragment StoreEntitySet="estado_usuario">
+                <ScalarProperty Name="idestado_usuario" ColumnName="idestado_usuario" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pagos">
+            <EntityTypeMapping TypeName="kohakuModel.pagos">
+              <MappingFragment StoreEntitySet="pagos">
+                <ScalarProperty Name="id_pagos" ColumnName="id_pagos" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="numero_clases_pagadas" ColumnName="numero_clases_pagadas" />
+                <ScalarProperty Name="estado_pago_id_estado_pagos" ColumnName="estado_pago_id_estado_pagos" />
+                <ScalarProperty Name="usuario_id_usuario" ColumnName="usuario_id_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rango_usuario">
+            <EntityTypeMapping TypeName="kohakuModel.rango_usuario">
+              <MappingFragment StoreEntitySet="rango_usuario">
+                <ScalarProperty Name="idrango_usuario" ColumnName="idrango_usuario" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_documento">
+            <EntityTypeMapping TypeName="kohakuModel.tipo_documento">
+              <MappingFragment StoreEntitySet="tipo_documento">
+                <ScalarProperty Name="idtipo_documento" ColumnName="idtipo_documento" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_usuario">
+            <EntityTypeMapping TypeName="kohakuModel.tipo_usuario">
+              <MappingFragment StoreEntitySet="tipo_usuario">
+                <ScalarProperty Name="id_tipo_usuario" ColumnName="id_tipo_usuario" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="kohakuModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="numero_identificacion" ColumnName="numero_identificacion" />
+                <ScalarProperty Name="telefono_fijo" ColumnName="telefono_fijo" />
+                <ScalarProperty Name="telefono_movil" ColumnName="telefono_movil" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+                <ScalarProperty Name="clases_restantes" ColumnName="clases_restantes" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="tipo_usuario_id_tipo_usuario" ColumnName="tipo_usuario_id_tipo_usuario" />
+                <ScalarProperty Name="tipo_documento_idtipo_documento" ColumnName="tipo_documento_idtipo_documento" />
+                <ScalarProperty Name="rango_usuario_idrango_usuario" ColumnName="rango_usuario_idrango_usuario" />
+                <ScalarProperty Name="estado_usuario_idestado_usuario" ColumnName="estado_usuario_idestado_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="bitacora_has_usuario" TypeName="kohakuModel.bitacora_has_usuario" StoreEntitySet="bitacora_has_usuario">
+            <EndProperty Name="bitacora">
+              <ScalarProperty Name="id_bitacora" ColumnName="bitacora_id_bitacora" />
+            </EndProperty>
+            <EndProperty Name="usuario">
+              <ScalarProperty Name="id_usuario" ColumnName="usuario_id_usuario" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="usuario_has_clases" TypeName="kohakuModel.usuario_has_clases" StoreEntitySet="usuario_has_clases">
+            <EndProperty Name="clases">
+              <ScalarProperty Name="id_clases" ColumnName="clases_id_clases" />
+            </EndProperty>
+            <EndProperty Name="usuario">
+              <ScalarProperty Name="id_usuario" ColumnName="usuario_id_usuario" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

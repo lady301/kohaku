@@ -1,0 +1,35 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="plantilla.master.cs" Inherits="kohaku3.app.plantilla" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+   
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>kohaku</title>
+    <link rel="icon" type="image/png" href="img/LOGO.png">
+    <link rel="stylesheet" href="css/master.css">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+      
+     <div class="login-box">
+
+        <div class="contenedor-logo">
+            <div class="contenedor-logo-derecha">
+                <img class="avatar" src="img/LOGOTIPO.png" width="300px" height="300px">
+
+                <button class="boton-crear-usurio" name="boton" type="submit">Crear Usuario</button>
+            </div>
+
+        </div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+
+         </div>
+      
+    </form>
+</body>
+</html>
